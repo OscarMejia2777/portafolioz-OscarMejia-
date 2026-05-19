@@ -1,5 +1,11 @@
 @import "tailwindcss";
 
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
 @theme {
   --color-bg: #120e1a;
   --color-surface: #1e1933;

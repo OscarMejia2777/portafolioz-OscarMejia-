@@ -5,7 +5,7 @@ import { staggerContainer, fadeInLeft, fadeInRight } from '@/animations/variants
 
 export function Experience() {
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8 bg-surface/30">
+    <section id="experience" className="pt-4 pb-12 px-4 sm:px-6 lg:px-8 bg-surface/30">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
           label="Experience"
@@ -14,7 +14,6 @@ export function Experience() {
         />
 
         <div className="relative">
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary to-transparent" />
 
           <motion.div
             className="space-y-12"

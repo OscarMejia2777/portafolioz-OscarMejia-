@@ -2,19 +2,24 @@ import { motion } from 'framer-motion'
 import { SKILLS } from '@/data/skills'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { staggerContainer, fadeIn } from '@/animations/variants'
+import { TechIcon } from '@/components/ui/TechIcon'
+import { useLanguage } from '@/context/LanguageContext'
 
 export function Skills() {
+  const { t } = useLanguage()
+  const skillKey = (name: string) => name.toLowerCase().replace(/\s+/g, '')
+
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="pt-4 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <SectionHeading
-          label="Tech Stack"
-          title="Technologies I Work With"
-          subtitle="The tools and frameworks I use to build modern web applications."
+          label={t('skills.label')}
+          title={t('skills.title')}
+          subtitle={t('skills.subtitle')}
         />
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="flex flex-wrap justify-center gap-5"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -24,33 +29,31 @@ export function Skills() {
             <motion.div
               key={skill.name}
               variants={fadeIn}
-              className="group relative bg-surface rounded-xl p-6 border border-white/5 hover:border-primary/20 transition-all"
+              className="group relative bg-surface/20 backdrop-blur-sm rounded-xl p-5 transition-all w-full sm:w-[calc(50%-10px)] lg:w-[calc(33.333%-14px)] max-w-[400px]"
             >
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                  <span className="material-symbols-outlined text-2xl text-primary">
-                    {skill.icon}
-                  </span>
+              <div className="flex items-start gap-3">
+                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+                  <TechIcon name={skill.name} className="w-5 h-5 text-primary" />
                 </div>
-                <div className="min-w-0">
-                  <h3 className="text-lg font-semibold text-white group-hover:text-primary transition-colors">
-                    {skill.name}
-                  </h3>
-                  <div className="flex items-center gap-2 mt-1">
-                    <span className="text-xs font-medium text-primary/80 bg-primary/10 px-2 py-0.5 rounded-full">
-                      {skill.level}
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="text-base font-semibold text-white group-hover:text-primary transition-colors truncate">
+                      {skill.name}
+                    </h3>
+                    <span className="text-[11px] font-medium text-primary/80 bg-primary/10 px-2 py-0.5 rounded-full shrink-0">
+                      {t(`skill.${skillKey(skill.name)}.level`)}
                     </span>
-                    <span className="text-xs text-text/30">{skill.experience}</span>
                   </div>
+                  <span className="text-[11px] text-text/30">{t(`skill.${skillKey(skill.name)}.exp`)}</span>
                   {skill.description && (
-                    <p className="text-sm text-text/50 mt-3 leading-relaxed">
-                      {skill.description}
+                    <p className="text-sm text-text/50 mt-2 leading-relaxed">
+                      {t(`skill.${skillKey(skill.name)}.desc`)}
                     </p>
                   )}
                 </div>
               </div>
 
-              <div className="mt-4 h-1 rounded-full bg-white/5 overflow-hidden">
+              <div className="mt-3 h-1 rounded-full bg-white/5 overflow-hidden">
                 <motion.div
                   className="h-full rounded-full bg-gradient-to-r from-primary to-accent"
                   initial={{ width: 0 }}

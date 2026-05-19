@@ -36,5 +36,33 @@ export const SKILLS: Skill[] = [
     icon: 'animation',
     description: 'Layout animations, scroll-triggered, variants, gesture-based',
   },
+  {
+    name: 'React Native',
+    level: 'Intermediate',
+    experience: '1+ year',
+    icon: 'mobile',
+    description: 'Cross-platform mobile apps, Expo, native modules, app store deployment',
+  },
+  {
+    name: 'JavaScript',
+    level: 'Advanced',
+    experience: '3+ years',
+    icon: 'code',
+    description: 'ES6+, async/await, closures, prototypal inheritance, event loop',
+  },
+  {
+    name: 'Vite',
+    level: 'Advanced',
+    experience: '2+ years',
+    icon: 'vite',
+    description: 'Fast builds, HMR, code splitting, manual chunks, environment config',
+  },
+  {
+    name: 'Astro',
+    level: 'Intermediate',
+    experience: '1+ year',
+    icon: 'astro',
+    description: 'Static site generation, islands architecture, content collections, view transitions',
+  },
 
 ]

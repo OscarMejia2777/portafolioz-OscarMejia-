@@ -3,9 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
 import { sendContactEmail } from '@/lib/emailjs'
+import { useLanguage } from '@/context/LanguageContext'
 import type { FormEvent } from 'react'
 
 export function Contact() {
+  const { t } = useLanguage()
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
 
@@ -19,12 +21,12 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="pt-4 pb-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
         <SectionHeading
-          label="Contact"
-          title="Let's Work Together"
-          subtitle="Have a project in mind? Let's discuss how we can build something great."
+          label={t('contact.label')}
+          title={t('contact.title')}
+          subtitle={t('contact.subtitle')}
         />
 
         <motion.form
@@ -43,14 +45,14 @@ export function Contact() {
                 required
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                placeholder="Name"
-                className="w-full px-4 py-3 bg-surface border border-white/5 rounded-lg text-white placeholder-transparent focus:outline-none focus:border-primary/50 transition-colors peer"
+                placeholder={t('contact.name')}
+                className="w-full px-4 py-3 bg-surface/10 backdrop-blur-sm rounded-lg text-white border border-white/5 placeholder-transparent focus:outline-none focus:bg-surface/20 focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all peer"
               />
               <label
                 htmlFor="name"
                 className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-valid:-top-6 peer-valid:text-xs peer-valid:text-primary"
               >
-                Name
+                {t('contact.name')}
               </label>
             </div>
 
@@ -61,14 +63,14 @@ export function Contact() {
                 required
                 value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
-                placeholder="Email"
-                className="w-full px-4 py-3 bg-surface border border-white/5 rounded-lg text-white placeholder-transparent focus:outline-none focus:border-primary/50 transition-colors peer"
+                placeholder={t('contact.email')}
+                className="w-full px-4 py-3 bg-surface/10 backdrop-blur-sm rounded-lg text-white border border-white/5 placeholder-transparent focus:outline-none focus:bg-surface/20 focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all peer"
               />
               <label
                 htmlFor="email"
                 className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-valid:-top-6 peer-valid:text-xs peer-valid:text-primary"
               >
-                Email
+                {t('contact.email')}
               </label>
             </div>
           </div>
@@ -80,14 +82,14 @@ export function Contact() {
               rows={5}
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
-              placeholder="Message"
-              className="w-full px-4 py-3 bg-surface border border-white/5 rounded-lg text-white placeholder-transparent focus:outline-none focus:border-primary/50 transition-colors peer resize-none"
+              placeholder={t('contact.message')}
+              className="w-full px-4 py-3 bg-surface/10 backdrop-blur-sm rounded-lg text-white border border-white/5 placeholder-transparent focus:outline-none focus:bg-surface/20 focus:border-indigo-500/50 focus:ring-4 focus:ring-indigo-500/10 transition-all peer resize-none"
             />
             <label
               htmlFor="message"
               className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-valid:-top-6 peer-valid:text-xs peer-valid:text-primary"
             >
-              Message
+              {t('contact.message')}
             </label>
           </div>
 
@@ -96,10 +98,10 @@ export function Contact() {
               {status === 'sending' ? (
                 <span className="flex items-center gap-2">
                   <span className="w-4 h-4 border-2 border-bg border-t-transparent rounded-full animate-spin" />
-                  Sending...
+                  {t('contact.sending')}
                 </span>
               ) : (
-                'Send Message'
+                t('contact.send')
               )}
             </Button>
           </div>
@@ -112,7 +114,7 @@ export function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
               >
-                Message sent successfully!
+                {t('contact.success')}
               </motion.p>
             )}
             {status === 'error' && (
@@ -122,7 +124,7 @@ export function Contact() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
               >
-                Failed to send. Try again later.
+                {t('contact.error')}
               </motion.p>
             )}
           </AnimatePresence>

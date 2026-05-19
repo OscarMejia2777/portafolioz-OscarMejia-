@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { sendChatMessage } from '@/lib/gemini'
+import { useLanguage } from '@/context/LanguageContext'
 
 interface Message {
   role: 'user' | 'ai'
@@ -8,6 +9,7 @@ interface Message {
 }
 
 export function AIAssistant() {
+  const { t } = useLanguage()
   const [isOpen, setIsOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
@@ -41,7 +43,7 @@ export function AIAssistant() {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle AI Assistant"
+        aria-label={t('ai.toggle')}
       >
         <span className="material-symbols-outlined">{isOpen ? 'close' : 'smart_toy'}</span>
       </motion.button>
@@ -62,10 +64,10 @@ export function AIAssistant() {
                   <span className="material-symbols-outlined text-sm text-bg">smart_toy</span>
                 </div>
                 <div>
-                  <p className="font-medium text-white text-sm">AI Assistant</p>
+                  <p className="font-medium text-white text-sm">{t('ai.title')}</p>
                   <div className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-                    <span className="text-xs text-text/40">Online</span>
+                    <span className="text-xs text-text/40">{t('ai.online')}</span>
                   </div>
                 </div>
               </div>
@@ -74,7 +76,7 @@ export function AIAssistant() {
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.length === 0 && (
                 <div className="text-center text-text/40 text-sm mt-8">
-                  Ask me anything about the portfolio!
+                  {t('ai.empty')}
                 </div>
               )}
               {messages.map((msg, i) => (
@@ -110,7 +112,7 @@ export function AIAssistant() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder="Ask something..."
+                  placeholder={t('ai.placeholder')}
                   className="flex-1 px-3 py-2 bg-bg border border-white/5 rounded-lg text-sm text-white placeholder-text/30 focus:outline-none focus:border-primary/50 transition-colors"
                 />
                 <button
@@ -118,7 +120,7 @@ export function AIAssistant() {
                   disabled={!input.trim() || isLoading}
                   className="px-3 py-2 bg-primary text-bg rounded-lg text-sm font-medium hover:opacity-90 disabled:opacity-50 transition-all"
                 >
-                  Send
+                  {t('ai.send')}
                 </button>
               </div>
             </div>

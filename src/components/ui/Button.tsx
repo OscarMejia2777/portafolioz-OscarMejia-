@@ -18,11 +18,11 @@ export function Button({ children, variant = 'primary', href, className = '', ..
   const cls = `${base} ${variants[variant]} ${className}`
 
   if (href) {
+    const isExternal = href.startsWith('http') || href.startsWith('mailto')
     return (
       <motion.a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
         className={cls}
         whileHover={{ y: -2 }}
         whileTap={{ scale: 0.98 }}
