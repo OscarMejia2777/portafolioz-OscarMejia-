@@ -17,7 +17,7 @@ export async function sendContactEmail(data: ContactForm): Promise<boolean> {
   }
 
   try {
-    await emailjs.send(SERVICE_ID, TEMPLATE_ID, data, PUBLIC_KEY)
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, data as unknown as Record<string, unknown>, PUBLIC_KEY)
     return true
   } catch (error) {
     console.error('EmailJS error:', error)

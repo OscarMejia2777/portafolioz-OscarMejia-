@@ -29,6 +29,7 @@ export function Projects() {
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
+              aria-pressed={activeFilter === cat}
               className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
                 activeFilter === cat
                   ? 'bg-primary text-bg'

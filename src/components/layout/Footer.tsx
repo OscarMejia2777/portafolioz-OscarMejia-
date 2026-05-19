@@ -29,7 +29,7 @@ export function Footer() {
                 whileHover={{ y: -3 }}
                 aria-label={social.name}
               >
-                <span className="material-symbols-outlined text-lg">{social.icon}</span>
+                <span className="material-symbols-outlined text-lg" role="img" aria-hidden="true">{social.icon}</span>
               </motion.a>
             ))}
           </div>

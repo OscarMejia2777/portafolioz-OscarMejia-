@@ -29,7 +29,7 @@ export const PROJECTS: Project[] = [
     id: 'devflow',
     title: 'DevFlow',
     description: 'Developer productivity tool for managing workflows and automation.',
-    tags: ['React', 'Node.js', 'WebSocket', 'Docker'],
+    tags: ['React', 'Supabase', 'WebSocket', 'Docker'],
     imageUrl: '',
     category: 'fullstack',
   },

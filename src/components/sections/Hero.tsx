@@ -1,56 +1,47 @@
-import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
-import { Button } from '@/components/ui/Button'
-import { Badge } from '@/components/ui/Badge'
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { Button } from "@/components/ui/Button";
+import { Badge } from "@/components/ui/Badge";
 
 const SOCIALS = [
-  { name: 'GitHub', url: '#', icon: 'code' },
-  { name: 'LinkedIn', url: '#', icon: 'work' },
-  { name: 'Twitter', url: '#', icon: 'alternate_email' },
-]
+  { name: "GitHub", url: "#", icon: "code" },
+  { name: "LinkedIn", url: "#", icon: "work" },
+  { name: "Twitter", url: "#", icon: "alternate_email" },
+];
 
-const TECH_STACK = ['React', 'TypeScript', 'Node.js', 'Tailwind', 'Framer']
+const TECH_STACK = ["React", "TypeScript", "Supabase", "Tailwind", "Framer"];
 
 export function Hero() {
-  const ref = useRef<HTMLDivElement>(null)
+  const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start start', 'end start'],
-  })
-  const y = useTransform(scrollYProgress, [0, 1], [0, 200])
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
     <section
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
     >
-      <motion.div
-        className="absolute inset-0 opacity-30"
-        style={{ y }}
-      >
+      <motion.div className="absolute inset-0 opacity-30" style={{ y }}>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/15 rounded-full blur-[100px]" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-secondary/10 rounded-full blur-[150px]" />
       </motion.div>
 
-      <motion.div className="relative z-10 text-center px-4 max-w-3xl" style={{ opacity }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="mb-6"
-        >
-          <Badge>Available for opportunities</Badge>
-        </motion.div>
-
+      <motion.div
+        className="relative z-10 text-center px-4 max-w-3xl"
+        style={{ opacity }}
+      >
         <motion.h1
           className="text-5xl sm:text-6xl md:text-7xl font-bold text-white mb-6 leading-tight"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          Frontend{' '}
+          Frontend{" "}
           <span className="bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent">
             Developer
           </span>
@@ -62,7 +53,8 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          I build performant, accessible web applications with modern technologies.
+          I build performant, accessible web applications with modern
+          technologies.
         </motion.p>
 
         <motion.div
@@ -93,7 +85,9 @@ export function Hero() {
               whileHover={{ y: -3 }}
               aria-label={social.name}
             >
-              <span className="material-symbols-outlined text-lg">{social.icon}</span>
+              <span className="material-symbols-outlined text-lg" role="img" aria-hidden="true">
+                {social.icon}
+              </span>
             </motion.a>
           ))}
         </motion.div>
@@ -115,5 +109,5 @@ export function Hero() {
         </motion.div>
       </motion.div>
     </section>
-  )
+  );
 }

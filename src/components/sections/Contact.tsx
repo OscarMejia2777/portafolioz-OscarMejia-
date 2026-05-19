@@ -1,8 +1,9 @@
-import { useState, type FormEvent } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { Button } from '@/components/ui/Button'
 import { sendContactEmail } from '@/lib/emailjs'
+import type { FormEvent } from 'react'
 
 export function Contact() {
   const [form, setForm] = useState({ name: '', email: '', message: '' })
@@ -47,7 +48,7 @@ export function Contact() {
               />
               <label
                 htmlFor="name"
-                className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm"
+                className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-valid:-top-6 peer-valid:text-xs peer-valid:text-primary"
               >
                 Name
               </label>
@@ -65,7 +66,7 @@ export function Contact() {
               />
               <label
                 htmlFor="email"
-                className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm"
+                className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-valid:-top-6 peer-valid:text-xs peer-valid:text-primary"
               >
                 Email
               </label>
@@ -84,14 +85,14 @@ export function Contact() {
             />
             <label
               htmlFor="message"
-              className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm"
+              className="absolute left-4 top-3 text-sm text-text/30 transition-all peer-focus:-top-6 peer-focus:text-xs peer-focus:text-primary peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm peer-valid:-top-6 peer-valid:text-xs peer-valid:text-primary"
             >
               Message
             </label>
           </div>
 
           <div className="text-center">
-            <Button type="submit" disabled={status === 'sending'}>
+            <Button disabled={status === 'sending'}>
               {status === 'sending' ? (
                 <span className="flex items-center gap-2">
                   <span className="w-4 h-4 border-2 border-bg border-t-transparent rounded-full animate-spin" />

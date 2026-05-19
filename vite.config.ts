@@ -11,6 +11,17 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: { '@': path.resolve(__dirname, './src') },
     },
+    build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            vendor: ['react', 'react-dom'],
+            motion: ['framer-motion'],
+            ai: ['@google/genai'],
+          },
+        },
+      },
+    },
     server: { port: 3000, host: '0.0.0.0' },
     define: {
       'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY || ''),

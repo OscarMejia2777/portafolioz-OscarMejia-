@@ -1,11 +1,11 @@
 import type { ReactNode, ButtonHTMLAttributes } from 'react'
 import { motion } from 'framer-motion'
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+type ButtonProps = {
   children: ReactNode
   variant?: 'primary' | 'outline' | 'ghost'
   href?: string
-}
+} & ButtonHTMLAttributes<HTMLButtonElement>
 
 export function Button({ children, variant = 'primary', href, className = '', ...props }: ButtonProps) {
   const base = 'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 cursor-pointer'
