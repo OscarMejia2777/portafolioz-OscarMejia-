@@ -3,8 +3,6 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
-const TECH_STACK = ["React", "TypeScript", "Supabase", "Tailwind", "Framer"];
-
 export function Hero() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -63,21 +61,6 @@ export function Hero() {
           </Button>
         </motion.div>
 
-        <motion.div
-          className="flex items-center justify-center gap-3 mt-12 flex-wrap"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2, duration: 0.6 }}
-        >
-          {TECH_STACK.map((tech) => (
-            <span
-              key={tech}
-              className="px-3 py-1 text-xs font-medium rounded-full bg-surface border border-white/5 text-text/50"
-            >
-              {tech}
-            </span>
-          ))}
-        </motion.div>
       </motion.div>
     </section>
   );

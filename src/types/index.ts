@@ -13,6 +13,7 @@ export interface Skill {
   level: string
   experience: string
   icon: string
+  description?: string
 }
 
 export interface Experience {

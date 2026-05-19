@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { EXPERIENCES } from '@/data/experiences'
-import { SKILLS } from '@/data/skills'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { staggerContainer, fadeInLeft, fadeInRight } from '@/animations/variants'
 
@@ -10,32 +9,9 @@ export function Experience() {
       <div className="max-w-6xl mx-auto">
         <SectionHeading
           label="Experience"
-          title="Skills & Career"
-          subtitle="My professional journey and the technologies I work with."
+          title="Career Journey"
+          subtitle="My professional trajectory and key achievements."
         />
-
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-20"
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
-          {SKILLS.map((skill) => (
-            <motion.div
-              key={skill.name}
-              variants={fadeInLeft}
-              className="p-5 rounded-xl bg-surface border border-white/5 text-center group hover:border-primary/20 transition-all"
-            >
-              <span className="material-symbols-outlined text-3xl text-primary/60 group-hover:text-primary transition-colors">
-                {skill.icon}
-              </span>
-              <h3 className="mt-3 font-semibold text-white">{skill.name}</h3>
-              <p className="text-xs text-text/40 mt-1">{skill.level}</p>
-              <p className="text-xs text-text/30">{skill.experience}</p>
-            </motion.div>
-          ))}
-        </motion.div>
 
         <div className="relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary to-transparent" />
