@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
+import { useSettings } from "@/hooks/useSettings";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 
 const NAV_LINKS = [
@@ -10,6 +11,7 @@ const NAV_LINKS = [
 
 export function Navbar() {
   const { t } = useLanguage();
+  const { settings } = useSettings();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -37,7 +39,7 @@ export function Navbar() {
             className="text-xl font-bold text-white"
             aria-label={t("nav.home")}
           >
-            <span className="text-primary">&lt;</span> OM <span className="text-primary">/&gt;</span>
+            <span className="text-primary">&lt;</span> {settings.initials} <span className="text-primary">/&gt;</span>
           </a>
 
           <div className="hidden md:flex items-center gap-4">
