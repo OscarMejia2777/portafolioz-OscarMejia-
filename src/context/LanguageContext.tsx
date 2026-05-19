@@ -1,41 +1,36 @@
-import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
-import { translations, type Language } from '@/data/translations'
+import { createContext, useContext, useState, type ReactNode } from 'react'
+import { useTranslations } from '@/hooks/useTranslations'
 
-type LanguageContextType = {
-  language: Language
-  setLanguage: (lang: Language) => void
-  toggleLanguage: () => void
+type Language = 'en' | 'es'
+
+interface LangContextValue {
+  lang: Language
   t: (key: string) => string
+  setLang: (l: Language) => void
+  transLoading: boolean
 }
 
-const LanguageContext = createContext<LanguageContextType | null>(null)
+const LangContext = createContext<LangContextValue>({
+  lang: 'en',
+  t: () => '',
+  setLang: () => {},
+  transLoading: true,
+})
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('lang')
-      if (saved === 'es' || saved === 'en') return saved
-    }
-    return 'en'
-  })
+  const [lang, setLang] = useState<Language>('en')
+  const { all, loading } = useTranslations()
 
-  useEffect(() => {
-    localStorage.setItem('lang', language)
-  }, [language])
-
-  const toggleLanguage = () => setLanguage(prev => prev === 'en' ? 'es' : 'en')
-
-  const t = (key: string) => translations[language][key] ?? key
+  const t = (key: string) => {
+    if (loading) return ''
+    return all[lang]?.[key] ?? key
+  }
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, toggleLanguage, t }}>
+    <LangContext.Provider value={{ lang, t, setLang, transLoading: loading }}>
       {children}
-    </LanguageContext.Provider>
+    </LangContext.Provider>
   )
 }
 
-export function useLanguage() {
-  const ctx = useContext(LanguageContext)
-  if (!ctx) throw new Error('useLanguage must be used within LanguageProvider')
-  return ctx
-}
+export const useLanguage = () => useContext(LangContext)
