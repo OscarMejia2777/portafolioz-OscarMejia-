@@ -36,11 +36,5 @@ export const SKILLS: Skill[] = [
     icon: 'animation',
     description: 'Layout animations, scroll-triggered, variants, gesture-based',
   },
-  {
-    name: 'Node.js',
-    level: 'Intermediate',
-    experience: '2+ years',
-    icon: 'code',
-    description: 'APIs, REST, WebSockets, middleware, serverless functions',
-  },
+
 ]
