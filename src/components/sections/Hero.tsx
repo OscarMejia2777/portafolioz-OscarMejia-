@@ -3,12 +3,6 @@ import { useRef } from "react";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 
-const SOCIALS = [
-  { name: "GitHub", url: "#", icon: "code" },
-  { name: "LinkedIn", url: "#", icon: "work" },
-  { name: "Twitter", url: "#", icon: "alternate_email" },
-];
-
 const TECH_STACK = ["React", "TypeScript", "Supabase", "Tailwind", "Framer"];
 
 export function Hero() {
@@ -67,29 +61,6 @@ export function Hero() {
           <Button variant="outline" href="#contact">
             Get in Touch
           </Button>
-        </motion.div>
-
-        <motion.div
-          className="flex items-center justify-center gap-4 mt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1, duration: 0.6 }}
-        >
-          {SOCIALS.map((social) => (
-            <motion.a
-              key={social.name}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text/40 hover:text-primary border border-white/5 hover:border-primary/30 transition-all"
-              whileHover={{ y: -3 }}
-              aria-label={social.name}
-            >
-              <span className="material-symbols-outlined text-lg" role="img" aria-hidden="true">
-                {social.icon}
-              </span>
-            </motion.a>
-          ))}
         </motion.div>
 
         <motion.div
